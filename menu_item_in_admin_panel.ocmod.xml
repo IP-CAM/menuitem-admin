@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <code>Custom item in admin ID</code>
+	<name>Add custom item in admin panel</name>
+	<version>0.5</version>
+	<author>Turas Studio</author>
+	<link>https://www.turasstudio.com/</link>
+	<file path="admin/controller/common/column_left.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->load->model('sale/order');
+				]]></search>
+			<add><![CDATA[      
+				
+				$custom[] = array(
+					'name'	   => 'Item',
+					// Please update controller action here
+					'href'     => $this->url->link('extension/module/basic_module', 'token=' . $this->session->data['token'], true),
+					'children' => array()		
+				);
+			
+			$data['menus'][] = array(
+				'id'       => 'menu-report',
+				'icon'	   => 'fa-paw', 
+				'name'	   => 'Custom Link',
+				'href'     => '',
+				'children' => $custom
+			);
+				
+				]]></add>
+		</operation>		
+	</file>
+</modification>
